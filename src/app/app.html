@@ -4,6 +4,7 @@
 <button (click)="form.set('material')">Show material form</button>
 <button (click)="form.set('vanilla-html')">Show vanilla html form</button>
 <button (click)="form.set('bootstrap')">Show bootstrap form</button>
+<button (click)="form.set('davinci')">Show davinci form</button>
 
 @switch (form()) {
   @case ('synergy') {
@@ -78,6 +79,20 @@
           <label for="input-{{ section.id }}" class="form-label">Input</label>
           <input type="text" class="form-control" id="input-{{ section.id }}" />
         </div>
+      }
+    </form>
+  }
+  @case ('davinci') {
+    <form>
+      @for (section of sections(); track section.id) {
+        <davinci-drop-down label="Select" [value]="options[section.id % options.length]">
+          @for (option of options; track option) {
+            <davinci-option [value]="option">
+              {{ option }}
+            </davinci-option>
+          }
+        </davinci-drop-down>
+        <davinci-text-field label="Input"></davinci-text-field>
       }
     </form>
   }

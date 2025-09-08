@@ -32,6 +32,7 @@
     "@angular/router": "^20.2.0",
     "@ng-bootstrap/ng-bootstrap": "^19.0.1",
     "@popperjs/core": "^2.11.8",
+    "@sick-ng/davinci-basic-elements": "^7.2.10",
     "@synergy-design-system/angular": "^2.41.1",
     "@synergy-design-system/components": "^2.41.1",
     "@synergy-design-system/styles": "^1.7.2",
