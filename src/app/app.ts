@@ -13,6 +13,8 @@ import {
   DavinciTextFieldComponent,
 } from '@sick-ng/davinci-basic-elements';
 
+const createSections = () => signal([...Array(1000).keys()].map((i) => ({ id: i })));
+
 @Component({
   selector: 'app-root',
   imports: [
@@ -30,7 +32,7 @@ import {
   styleUrl: './app.css',
 })
 export class App {
-  protected readonly sections = signal([...Array(20).keys()].map((i) => ({ id: i })));
+  protected readonly sections = signal([...Array(1000).keys()].map((i) => ({ id: i })));
   protected readonly options = [
     'Apple',
     'Banana',
@@ -42,4 +44,20 @@ export class App {
     'Honeydew',
   ];
   protected readonly form = signal<string | undefined>(undefined);
+
+  constructor() {
+    effect(() => {
+      // Watch the form signal
+      this.form();
+      // Update sections whenever form changes
+      untracked(() => {
+        this.sections.set(createSections()());
+      });
+    });
+  }
+
+  reset() {
+    this.sections.set([]);
+    this.form.set(undefined);
+  }
 }
